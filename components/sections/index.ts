@@ -1,0 +1,12 @@
+export { default as Hero } from "./Hero";
+export { default as EventTimer } from "./EventTimer";
+export { default as List } from "./List";
+export { default as ListTwo } from "./ListTwo";
+export { default as BlogList } from "./BlogList";
+export { default as Schedules } from "./Schedules";
+export { default as ImageList } from "./ImageList";
+export { default as Gallery } from "./Gallery";
+export { default as Questions } from "./Questions";
+export { default as Pricing } from "./Pricing";
+export { default as Newsletter } from "./Newsletter";
+export { default as Contact } from "./Contact";
