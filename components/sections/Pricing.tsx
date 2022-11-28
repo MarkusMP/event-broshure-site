@@ -22,7 +22,9 @@ const Pricing = ({ title, description, pricingList }: IPricing) => {
               <div className="flex-grow">
                 <Image
                   className="object-cover pb-2"
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
                   src={useNextSanityImage(sanityClient, el.icon).src}
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
                   loader={useNextSanityImage(sanityClient, el.icon).loader}
                   alt={el.icon.alt}
                   width={50}

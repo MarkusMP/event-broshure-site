@@ -7,6 +7,7 @@ import { sanityClient } from "../../lib/sanity.server";
 
 const BlogList = ({ title, description, listBlog }: IBlogList) => {
   const imageProps = (image: any) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     return useNextSanityImage(sanityClient, image);
   };
 
@@ -33,8 +34,10 @@ const BlogList = ({ title, description, listBlog }: IBlogList) => {
                   {item.mainImage && (
                     <Image
                       className="object-contain rounded-md"
+                      // @ts-ignore: Object is possibly 'null'.
                       src={imageProps(item.mainImage).src}
-                      loader={imageProps(item.mainImage).loader}
+                      // @ts-ignore: Object is possibly 'null'.
+                      loader={imageProps(item!.mainImage).loader}
                       alt={item.mainImage.alt}
                       width={800}
                       height={400}

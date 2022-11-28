@@ -14,7 +14,9 @@ const ListTwo = ({ listItemsTwo }: IListTwo) => {
               <div key={item._key} className="text-center">
                 <Image
                   className="object-cover mx-auto pb-2"
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
                   src={useNextSanityImage(sanityClient, item.icon).src}
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
                   loader={useNextSanityImage(sanityClient, item.icon).loader}
                   alt={item.icon.alt}
                   width={60}

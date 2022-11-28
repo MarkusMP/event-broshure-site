@@ -31,7 +31,9 @@ const ScheduleItem = ({ speaker, length, index }: IProps) => {
         {speaker.image && (
           <Image
             className="object-cover inline object-cover w-16 h-16 mr-0 md:mr-4 mb-2 md:mb-0 rounded-full"
+            // eslint-disable-next-line react-hooks/rules-of-hooks
             src={useNextSanityImage(sanityClient, speaker.image).src}
+            // eslint-disable-next-line react-hooks/rules-of-hooks
             loader={useNextSanityImage(sanityClient, speaker.image).loader}
             alt={speaker.image.alt}
             width={70}

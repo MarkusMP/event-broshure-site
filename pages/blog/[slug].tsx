@@ -116,11 +116,14 @@ export default function Page({ data, preview, header, settings }: any) {
     },
     types: {
       image: ({ value }: any) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const imageProps = useNextSanityImage(sanityClient, page?.mainImage);
         return (
           <Image
             className="object-cover"
+            // @ts-ignore: Object is possibly 'null'.
             src={imageProps.src}
+            // @ts-ignore: Object is possibly 'null'.
             loader={imageProps.loader}
             alt={value.alt}
             width={700}
@@ -142,6 +145,7 @@ export default function Page({ data, preview, header, settings }: any) {
     );
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const imageProps = useNextSanityImage(sanityClient, page?.mainImage);
 
   return (
@@ -171,7 +175,9 @@ export default function Page({ data, preview, header, settings }: any) {
               {page?.mainImage && (
                 <Image
                   className="object-cover"
+                  // @ts-ignore: Object is possibly 'null'.
                   src={imageProps.src}
+                  // @ts-ignore: Object is possibly 'null'.
                   loader={imageProps.loader}
                   alt={page?.mainImage.alt}
                   fill

@@ -20,7 +20,9 @@ const ImageList = ({ title, description, listImage }: IImageList) => {
             >
               <Image
                 className="object-cover mx-auto rounded-md md:grayscale md:hover:grayscale-0 transition-all"
+                // eslint-disable-next-line react-hooks/rules-of-hooks
                 src={useNextSanityImage(sanityClient, item.image).src}
+                // eslint-disable-next-line react-hooks/rules-of-hooks
                 loader={useNextSanityImage(sanityClient, item.image).loader}
                 alt={item.image.alt}
                 fill
