@@ -3,6 +3,31 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
   font-family: "Lato", sans-serif;
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
+}
+
+.slide {
+  transform: translateY(100%);
+  opacity: 0;
+  animation: slide-in-anim 0.25s ease-out forwards;
+}
+
+@keyframes slide-in-anim {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
