@@ -39,7 +39,7 @@ export default function Layout({ children, header, footer }: Props) {
           onClick={handleGoTop}
           className={`flex items-center ${
             !show ? "hidden" : ""
-          } justify-center fixed z-90 bottom-8 right-8 border-0 w-14 h-14 rounded-md drop-shadow-md bg-primary hover:bg-secondary dark:bg-secondary hover:dark:bg-primary transition-all text-white text-3xl font-bold`}
+          } justify-center fixed z-[10] bottom-8 right-8 border-0 w-14 h-14 rounded-md drop-shadow-md bg-primary hover:bg-secondary dark:bg-secondary hover:dark:bg-primary transition-all text-white text-3xl font-bold`}
         >
           <AiOutlineArrowUp />
         </button>
