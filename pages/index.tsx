@@ -5,6 +5,7 @@ import { urlFor, usePreviewSubscription } from "../lib/sanity";
 import { QUERY_HEADER, QUERY_HOME, QUERY_SETTINGS } from "../data";
 import Layout from "../components/Layout";
 import RenderSections from "../components/RenderSections";
+import { useRouter } from "next/router";
 
 function filterDataToSingleItem(data: any, preview: any) {
   if (!Array.isArray(data)) {
@@ -58,6 +59,7 @@ export async function getStaticProps({ params, preview = false, locale }: any) {
   }
 }
 const Home: NextPage = ({ data, preview, settings, header }: any) => {
+  const router = useRouter();
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
     initialData: data?.page,
@@ -66,27 +68,14 @@ const Home: NextPage = ({ data, preview, settings, header }: any) => {
 
   const page = filterDataToSingleItem(previewData, preview);
 
-  const url = page?.ogImage && (urlFor(page.ogImage).url() as string);
-
   return (
     <>
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/`}
-        openGraph={{
-          url: `${settings?.url}/`,
-          title: page?.titleSEO,
-          description: page?.descriptionSEO,
-          images: [
-            {
-              url: url,
-              width: 1200,
-              height: 630,
-              alt: "Logo of webbtopia",
-            },
-          ],
-        }}
+        canonical={`https://event-broshure-site.vercel.app/${
+          router.locale === "en" ? "" : "sv"
+        }`}
       />
       <Layout header={header} footer={settings}>
         {page?.content && <RenderSections sections={page.content} />}

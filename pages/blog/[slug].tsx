@@ -27,13 +27,22 @@ function filterDataToSingleItem(data: any, preview: any) {
 }
 
 export async function getStaticPaths({ preview = false, locales }: any) {
-  const allSlugsQuery = groq`*[defined(slug.current)][].slug.current`;
+  const allSlugsQuery = groq`*[defined(slug.current) && _type == "blog"]  {
+    "slug": slug.current,
+    __i18n_lang
+  }`;
   const pages = await getClient(preview).fetch(allSlugsQuery);
 
   const paths = [] as any;
   pages.map((el: any) => {
     return locales.map((locale: any) => {
-      return paths.push({ params: { slug: `${el.slug}` }, locale });
+      if (el.__i18n_lang === "sv-se" && locale === "sv") {
+        return paths.push({ params: { slug: `blog/${el.slug}` }, locale });
+      } else if (el.__i18n_lang === "en-us" && locale === "en") {
+        return paths.push({ params: { slug: `blog/${el.slug}` }, locale });
+      } else {
+        return;
+      }
     });
   });
 
@@ -134,8 +143,6 @@ export default function Page({ data, preview, header, settings }: any) {
     },
   };
 
-  const url = page?.ogImage && (urlFor(page.ogImage).url() as string);
-
   const router = useRouter();
   if (router.isFallback) {
     return (
@@ -153,20 +160,7 @@ export default function Page({ data, preview, header, settings }: any) {
       <NextSeo
         title={page?.titleSEO}
         description={page?.descriptionSEO}
-        canonical={`${settings?.url}/${page.slug}`}
-        openGraph={{
-          url: `${settings?.url}/${page.slug}`,
-          title: page?.titleSEO,
-          description: page?.descriptionSEO,
-          images: [
-            {
-              url: url,
-              width: 1200,
-              height: 630,
-              alt: "Logo of webbtopia",
-            },
-          ],
-        }}
+        canonical={`https://event-broshure-site.vercel.app/blog/${page.slug}`}
       />
       <Layout header={header} footer={settings}>
         <section className="min-h-screen bg-primary dark:bg-secondary">
